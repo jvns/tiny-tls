@@ -6,7 +6,6 @@ import (
 	"crypto/hmac"
 	"crypto/rand"
 	"crypto/sha256"
-	"fmt"
 
 	"golang.org/x/crypto/cryptobyte"
 	"golang.org/x/crypto/curve25519"
@@ -164,7 +163,6 @@ func (session *Session) ReceiveData() []byte {
 	iv[11] ^= session.RecordsReceived
 	plaintext := decrypt(session.Keys.ServerApplicationKey, iv, record)
 	session.RecordsReceived += 1
-	fmt.Println(session.RecordsReceived)
 	return plaintext
 }
 
